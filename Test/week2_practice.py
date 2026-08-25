@@ -52,3 +52,9 @@ else:
 # 7. Print numbers 1 to 10 using a for loop with range()
 for i in range(1, 11):
     print(i)
+
+# 8. Calculate the sum of numbers from 1 to 100 using a loop
+total_sum = 0
+for num in range(1, 101):
+    total_sum += num
+print(f"Sum of numbers from 1 to 100: {total_sum}")
