@@ -11,3 +11,11 @@ total_price = price * 1.16
 print(f"Total price including 16% VAT: Ksh {total_price:.2f}")  #  :   tells python to stop treating it as variable.
                                                                 #  .2f  display the value to 2 decimal place.
 
+# 3. Ask for two numbers, print their sum, difference, product and quotient.
+num1 = float(input("Enter first number: "))
+num2 = float(input("Enter second number: "))
+
+print(f"Sum: {num1 + num2}")
+print(f"Difference: {num1 - num2}")
+print(f"Product: {num1 * num2}")
+print(f"Quotient: {num1 / num2}")
