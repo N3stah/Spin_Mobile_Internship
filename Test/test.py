@@ -557,3 +557,37 @@ print(mul)     #output: 24
 nums = [1, 2, 3]
 res = list(map(lambda x: x * 2, nums))
 print(res)   #Output:[2, 4, 6]
+
+
+
+#Exception Handling
+
+
+try:
+    # code that might fail goes here
+    number = int(input("Enter a number: "))
+    print(f"You entered: {number}")
+
+except ValueError:
+    # code that runs IF a ValueError happens
+    print("That's not a number. Please try again.")
+
+finally:
+    # code that ALWAYS runs, whether or not an error happened
+    print("Program finished.")
+
+    ###
+
+try:
+    value = int(input("Amount: "))
+    result = 100 / value
+
+except ValueError:
+    print("Not a valid number.")
+
+except ZeroDivisionError:
+    print("Amount cannot be zero.")
+
+except Exception as e:
+    # catches ANYTHING else — use as a safety net
+    print(f"Unexpected error: {e}")
