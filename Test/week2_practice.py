@@ -81,3 +81,14 @@ print(f"{'Type':<12}: {trans_type:<20}")
 print("=" * 35)
 
 print("\n")
+
+# 11. Function to format full name as "LASTNAME, Firstname"
+def format_name(full_name: str) -> str:
+    parts = full_name.strip().split()
+    first_name = parts[0].title()
+    last_name = parts[-1].upper()
+    return f"{last_name}, {first_name}"
+
+
+# Example execution
+print(format_name("Mark Manoti"))
