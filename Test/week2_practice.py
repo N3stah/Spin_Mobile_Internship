@@ -48,3 +48,7 @@ elif val < 0:
     print("Number is negative")
 else:
     print("Number is zero")
+
+# 7. Print numbers 1 to 10 using a for loop with range()
+for i in range(1, 11):
+    print(i)
