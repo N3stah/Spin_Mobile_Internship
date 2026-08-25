@@ -58,3 +58,11 @@ total_sum = 0
 for num in range(1, 101):
     total_sum += num
 print(f"Sum of numbers from 1 to 100: {total_sum}")
+
+# 9. Prompt user for input continuously until they enter 'quit'
+while True:
+    user_input = input("Enter something (or 'quit' to exit): ").strip().lower()
+    if user_input == "quit":
+        print("Goodbye!")
+        break
+    print(f"You typed: {user_input}")
