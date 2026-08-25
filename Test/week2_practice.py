@@ -92,3 +92,19 @@ def format_name(full_name: str) -> str:
 
 # Example execution
 print(format_name("Mark Manoti"))
+
+# 12.  Number guessing game
+secret_number = 69
+attempts = 0
+
+while True:
+    guess = int(input("Guess the secret number: "))
+    attempts += 1
+
+    if guess < secret_number:
+        print("Higher")
+    elif guess > secret_number:
+        print("Lower")
+    else:
+        print(f"Correct! It took you {attempts} attempt.")
+        break
