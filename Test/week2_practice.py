@@ -66,3 +66,18 @@ while True:
         print("Goodbye!")
         break
     print(f"You typed: {user_input}")
+
+# 10. Print a receipt for a transaction using formatted f-strings
+item = "Salary"
+amount = 47500.0
+trans_type = "income"
+
+print("=" * 35)
+print(f"{'TRANSACTION RECEIPT':^35}")
+print("=" * 35)
+print(f"{'Item':<12}: {item:<20}")
+print(f"{'Amount':<12}: KES {amount:>14,.2f}")
+print(f"{'Type':<12}: {trans_type:<20}")
+print("=" * 35)
+
+print("\n")
