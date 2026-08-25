@@ -19,3 +19,17 @@ print(f"Sum: {num1 + num2}")
 print(f"Difference: {num1 - num2}")
 print(f"Product: {num1 * num2}")
 print(f"Quotient: {num1 / num2}")
+
+# 4. Ask for a test marks scores (0-100) and print letter grade
+marks_scores = float(input("Enter test score (0-100): "))
+if marks_scores >= 90:
+    print("Grade: A")
+elif marks_scores >= 80:
+    print("Grade: B")
+elif marks_scores >= 70:
+    print("Grade: C")
+elif marks_scores >= 60:
+    print("Grade: D")
+else:
+    print("Grade: F")
+
