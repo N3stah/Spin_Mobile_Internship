@@ -39,3 +39,12 @@ if number % 2 == 0:                # using modulo (%)
     print(f"{number} is Even")
 else:
     print(f"{number} is Odd")
+
+# 6. Check if a number is positive, negative, or zero
+val = float(input("Enter any number: "))
+if val > 0:
+    print("Number is positive")
+elif val < 0:
+    print("Number is negative")
+else:
+    print("Number is zero")
