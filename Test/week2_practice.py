@@ -33,3 +33,9 @@ elif marks_scores >= 60:
 else:
     print("Grade: F")
 
+# 5. Ask for an integer and check if it is even/odd
+number = int(input("Enter an integer: "))
+if number % 2 == 0:                # using modulo (%)
+    print(f"{number} is Even")
+else:
+    print(f"{number} is Odd")
