@@ -121,11 +121,21 @@ def calculate_vat(amount: float, rate: float = 0.16) -> tuple[float, float]:
 print(calculate_vat(100))  #uses the default 16% #output= (16.0, 116.0)
 print(calculate_vat(200, 0.18)) #uses assigned 18% #output= (36.0, 236.0)
 
-# 2. Format transaction into display string
+# 14. Format transaction into display string
 def format_transaction(t_type: str, amount: float, description: str) -> str:
     sign = "+" if t_type.lower() == "income" else "-"
     return f"{sign} KES {amount:,.2f} | {description}"
 
 print(format_transaction("income", 100, "june"))   #output: + KES 100.00 | june
 
+# 15. Filter list of transaction dicts by type
+def filter_by_type(transactions: list[dict], t_type: str) -> list[dict]:
+    return [t for t in transactions if t.get("type") == t_type]
 
+data = [
+        {"type": "income", "amount": 5000.0, "description": "Salary payment"},
+        {"type": "expense", "amount": 200.0, "description": "Bus fare"},
+        {"type": "expense", "amount": 1500.0, "description": "Groceries"},
+]
+print("Filtered Income:" ,filter_by_type(data, "income"))
+print("Filtered Expenses:", filter_by_type(data, "expense"))
