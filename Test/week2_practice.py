@@ -146,3 +146,52 @@ class NegativeValueError(Exception):
 class OutOfRangeError(Exception):
     """Raised when an integer input falls outside the required range."""
     pass
+# 16. safe_divide function
+def safe_divide(a, b):
+    try:
+        return a / b
+    except ZeroDivisionError:
+        print("Error: Cannot divide by zero.")
+    except TypeError:
+        print("Error: Both inputs must be numeric.")
+    finally:
+        print("Division attempted.")
+# 17. withdraw function using custom exception
+def withdraw(balance: float, amount: float) -> float:
+    if amount > balance:
+        raise NegativeValueError(
+            f"Withdrawal amount KES {amount:,.2f} exceeds balance KES {balance:,.2f}."
+        )
+    return balance - amount
+# 18. get_valid_integer function with input loop and range checking
+def get_valid_integer(prompt: str, min_val: int, max_val: int) -> int:
+    while True:
+        try:
+            user_input = input(prompt)
+            val = int(user_input)
+            if val < min_val or val > max_val:
+                raise OutOfRangeError(
+                    f"Number {val} is outside valid range [{min_val}, {max_val}]."
+                )
+            return val
+        except ValueError:
+            print("Invalid input! Please enter a valid whole number.")
+        except OutOfRangeError as err:
+            print(err)
+
+# Verification Tests
+if __name__ == "__main__":
+    print("--- 16. Testing safe_divide ---")
+    safe_divide(10, 2)       #only one accepted  output: Division Attempted
+    safe_divide(10, 0)     # Output: Division attempted. Error: Cannot divide by zero.
+    safe_divide(10, "two")  #ouput:Division attempted.  Error: Both inputs must be numeric.
+
+    print("\n--- 17. Testing withdraw ---")
+    try:
+        balance = withdraw(5000.0, 6000.0)
+    except NegativeValueError as e:
+        print(f"Caught expected exception: {e}")  #output: Caught expected exception: Withdrawal amount KES 6,000.00 exceeds balance KES 5,000.00.
+
+    print("\n--- 18. Testing get_valid_integer ---")
+    valid_num = get_valid_integer("Enter 1-10: ", 1, 10)
+    print(f"Accepted value: {valid_num}")
