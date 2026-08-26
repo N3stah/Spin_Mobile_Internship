@@ -1,5 +1,6 @@
 # First practice examples
 # A python command that ask users for their age and coverts it and give the future age in 5 years
+from fido2 import payment
 from zenmapGUI import Print
 
 age = int(input("Enter your age: "))
@@ -119,3 +120,12 @@ def calculate_vat(amount: float, rate: float = 0.16) -> tuple[float, float]:
 
 print(calculate_vat(100))  #uses the default 16% #output= (16.0, 116.0)
 print(calculate_vat(200, 0.18)) #uses assigned 18% #output= (36.0, 236.0)
+
+# 2. Format transaction into display string
+def format_transaction(t_type: str, amount: float, description: str) -> str:
+    sign = "+" if t_type.lower() == "income" else "-"
+    return f"{sign} KES {amount:,.2f} | {description}"
+
+print(format_transaction("income", 100, "june"))   #output: + KES 100.00 | june
+
+
