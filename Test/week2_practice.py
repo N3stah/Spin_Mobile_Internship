@@ -139,3 +139,10 @@ data = [
 ]
 print("Filtered Income:" ,filter_by_type(data, "income"))
 print("Filtered Expenses:", filter_by_type(data, "expense"))
+
+class NegativeValueError(Exception):
+    """Raised when a withdrawal amount exceeds the current account balance."""
+    pass
+class OutOfRangeError(Exception):
+    """Raised when an integer input falls outside the required range."""
+    pass
