@@ -108,3 +108,12 @@ while True:
     else:
         print(f"Correct! It took you {attempts} attempt.")
         break
+
+# 13. Calculate VAT with a default rate (returns tuple of vat_amount and total)
+def calculate_vat(amount: float, rate: float = 0.16) -> tuple[float, float]:
+    vat_amount = amount * rate
+    total = amount + vat_amount
+    return round(vat_amount, 2), round(total, 2)
+
+print(calculate_vat(100)) #Uses the default 16% rate   #output (16.0, 116.0)
+print(calculate_vat(100, 0.12))  #It overrides the 16% with 12% # output (12.0, 112.0)
