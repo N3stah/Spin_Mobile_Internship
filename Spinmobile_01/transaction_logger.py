@@ -42,6 +42,22 @@ def get_valid_amount():
         except InvalidAmountError as e:
             print(f" {e}")
 
+def get_valid_type():
+    """Prompt user for transaction type (income or expense)."""
+    while True:
+        t_type = input("Type (income/expense): ").strip().lower()
+        if t_type in ("income", "expense"):
+            return t_type
+        print("Please enter 'income' or 'expense'.")
+
+def get_valid_description():
+    """Prompt user for a non-empty description."""
+    while True:
+        description = input("Description: ").strip()
+        if description:
+            return description
+        print("Description cannot be empty.")
+
 def main():
     """Main application entry point. Manages the transaction list."""
     transactions = []
