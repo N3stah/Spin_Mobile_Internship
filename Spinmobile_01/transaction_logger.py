@@ -8,6 +8,10 @@ Description:
     A command-line tool to log, view, and track financial transactions
     with full input validation and error handling.
 """
+class InvalidAmountError(Exception):
+    """Raised when a transaction amount is zero, negative, or otherwise invalid."""
+    pass
+
 def show_menu():
     """Display the main application menu."""
     print("\n" + "-" * 30)
