@@ -8,6 +8,17 @@ Description:
     A command-line tool to log, view, and track financial transactions
     with full input validation and error handling.
 """
+def show_menu():
+    """Display the main application menu."""
+    print("\n" + "-" * 30)
+    print("   MENU")
+    print("-" * 30)
+    print("   1. Add Transaction")
+    print("   2. View Transactions")
+    print("   3. Show Balance")
+    print("   4. Exit")
+    print("-" * 30)
+
 def main():
     """Main application entry point. Manages the transaction list."""
     transactions = []
@@ -15,6 +26,22 @@ def main():
     print("    KES Financial Transaction Logger")
     print("=" * 45)
     print("Application started.")
+
+    while True:
+        show_menu()
+        choice = input("\nEnter choice (1-4): ").strip()
+
+        if choice == "1":
+            print("→ Add transaction (coming soon)")
+        elif choice == "2":
+            print("→ View transactions (coming soon)")
+        elif choice == "3":
+            print("→ Show balance (coming soon)")
+        elif choice == "4":
+            print("\nGoodbye!")
+            break
+        else:
+            print("⚠ Invalid choice. Please enter 1, 2, 3, or 4.")
 
 
 if __name__ == "__main__":
