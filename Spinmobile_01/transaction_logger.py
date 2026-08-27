@@ -23,6 +23,25 @@ def show_menu():
     print("   4. Exit")
     print("-" * 30)
 
+def get_valid_amount():
+    """ Prompt user for a transaction amount with full validation.
+    Returns:
+        float: A positive transaction amount in KES.
+    Raises:
+        InvalidAmountError: If the amount is zero or negative."""
+
+    while True:
+        try:
+            raw = input("Enter amount in(KES): ").strip()
+            amount = float(raw)
+            if amount <= 0:
+                raise InvalidAmountError("Amount must be greater than zero .")
+            return amount
+        except ValueError:
+            print(" Invalid input — please enter a numeric amount (e.g. 1500.00).")
+        except InvalidAmountError as e:
+            print(f" {e}")
+
 def main():
     """Main application entry point. Manages the transaction list."""
     transactions = []
@@ -45,7 +64,7 @@ def main():
             print("\nGoodbye!")
             break
         else:
-            print("⚠ Invalid choice. Please enter 1, 2, 3, or 4.")
+            print(" Invalid choice. Please enter 1, 2, 3, or 4.")
 
 
 if __name__ == "__main__":
