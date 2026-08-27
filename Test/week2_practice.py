@@ -109,11 +109,87 @@ while True:
         print(f"Correct! It took you {attempts} attempt.")
         break
 
-# 13. Calculate VAT with a default rate (returns tuple of vat_amount and total)
+
+# 13. Calculate VAT with a default rates
 def calculate_vat(amount: float, rate: float = 0.16) -> tuple[float, float]:
     vat_amount = amount * rate
     total = amount + vat_amount
     return round(vat_amount, 2), round(total, 2)
 
-print(calculate_vat(100)) #Uses the default 16% rate   #output (16.0, 116.0)
-print(calculate_vat(100, 0.12))  #It overrides the 16% with 12% # output (12.0, 112.0)
+print(calculate_vat(100))  #uses the default 16% #output= (16.0, 116.0)
+print(calculate_vat(200, 0.18)) #uses assigned 18% #output= (36.0, 236.0)
+
+# 14. Format transaction into display string
+def format_transaction(t_type: str, amount: float, description: str) -> str:
+    sign = "+" if t_type.lower() == "income" else "-"
+    return f"{sign} KES {amount:,.2f} | {description}"
+
+print(format_transaction("income", 100, "june"))   #output: + KES 100.00 | june
+
+# 15. Filter list of transaction dicts by type
+def filter_by_type(transactions: list[dict], t_type: str) -> list[dict]:
+    return [t for t in transactions if t.get("type") == t_type]
+
+data = [
+        {"type": "income", "amount": 5000.0, "description": "Salary payment"},
+        {"type": "expense", "amount": 200.0, "description": "Bus fare"},
+        {"type": "expense", "amount": 1500.0, "description": "Groceries"},
+]
+print("Filtered Income:" ,filter_by_type(data, "income"))
+print("Filtered Expenses:", filter_by_type(data, "expense"))
+
+class NegativeValueError(Exception):
+    """Raised when a withdrawal amount exceeds the current account balance."""
+    pass
+class OutOfRangeError(Exception):
+    """Raised when an integer input falls outside the required range."""
+    pass
+# 16. safe_divide function
+def safe_divide(a, b):
+    try:
+        return a / b
+    except ZeroDivisionError:
+        print("Error: Cannot divide by zero.")
+    except TypeError:
+        print("Error: Both inputs must be numeric.")
+    finally:
+        print("Division attempted.")
+# 17. withdraw function using custom exception
+def withdraw(balance: float, amount: float) -> float:
+    if amount > balance:
+        raise NegativeValueError(
+            f"Withdrawal amount KES {amount:,.2f} exceeds balance KES {balance:,.2f}."
+        )
+    return balance - amount
+# 18. get_valid_integer function with input loop and range checking
+def get_valid_integer(prompt: str, min_val: int, max_val: int) -> int:
+    while True:
+        try:
+            user_input = input(prompt)
+            val = int(user_input)
+            if val < min_val or val > max_val:
+                raise OutOfRangeError(
+                    f"Number {val} is outside valid range [{min_val}, {max_val}]."
+                )
+            return val
+        except ValueError:
+            print("Invalid input! Please enter a valid whole number.")
+        except OutOfRangeError as err:
+            print(err)
+
+# Verification Tests
+if __name__ == "__main__":
+    print("--- 16. Testing safe_divide ---")
+    safe_divide(10, 2)       #only one accepted  output: Division Attempted
+    safe_divide(10, 0)     # Output: Division attempted. Error: Cannot divide by zero.
+    safe_divide(10, "two")  #ouput:Division attempted.  Error: Both inputs must be numeric.
+
+    print("\n--- 17. Testing withdraw ---")
+    try:
+        balance = withdraw(5000.0, 6000.0)
+    except NegativeValueError as e:
+        print(f"Caught expected exception: {e}")  #output: Caught expected exception: Withdrawal amount KES 6,000.00 exceeds balance KES 5,000.00.
+
+    print("\n--- 18. Testing get_valid_integer ---")
+    valid_num = get_valid_integer("Enter 1-10: ", 1, 10)
+    print(f"Accepted value: {valid_num}")
