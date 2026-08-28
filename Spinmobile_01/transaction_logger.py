@@ -78,6 +78,25 @@ def add_transaction(transactions):
     transactions.append(transaction)
     print(f"Added: {t_type.upper()} of KES {amount:,.2f} — {description}")
 
+def view_transactions(transactions):
+    """Display all recorded transactions in a formatted table."""
+    print("\n---Transaction History ---")
+
+    if not transactions:
+        print("No transactions recorded yet.")
+        return
+
+    print(f"\n{'#':<5} {'TYPE':<10} {'AMOUNT(KES)':>15}   {'DESCRIPTION'}")
+    print("─" * 55)
+
+    for i, t in enumerate(transactions, start=1):
+        sign = "+" if t["type"] == "income" else "-"
+        amount_str = f"{sign}KES {t['amount']:>10,.2f}"
+        print(f"{i:<5} {t['type'].upper():<10} {amount_str}   {t['description']}")
+
+    print("─" * 55)
+    print(f"Total transactions: {len(transactions)}")
+
 def main():
     """Main application entry point. Manages the transaction list."""
     transactions = []
@@ -93,7 +112,7 @@ def main():
         if choice == "1":
             add_transaction(transactions)
         elif choice == "2":
-            print("→ View transactions (coming soon)")
+            view_transactions(transactions)
         elif choice == "3":
             print("→ Show balance (coming soon)")
         elif choice == "4":
