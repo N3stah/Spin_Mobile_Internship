@@ -122,29 +122,34 @@ def show_balance(transactions):
         print("\n  Status:Negative — review your expenses.")
 
 def main():
-    """Main application entry point. Manages the transaction list."""
+    """Main application entry point."""
     transactions = []
     print("=" * 45)
     print("    KES Financial Transaction Logger")
     print("=" * 45)
-    print("Application started.")
 
-    while True:
-        show_menu()
-        choice = input("\nEnter choice (1-4): ").strip()
+    try:
+        while True:
+            show_menu()
+            choice = input("\nEnter choice (1-4): ").strip()
 
-        if choice == "1":
-            add_transaction(transactions)
-        elif choice == "2":
-            view_transactions(transactions)
-        elif choice == "3":
-            show_balance(transactions)
-        elif choice == "4":
-            print("\nGoodbye!")
-            break
-        else:
-            print(" Invalid choice. Please enter 1, 2, 3, or 4.")
+            if choice == "1":
+                add_transaction(transactions)
+            elif choice == "2":
+                view_transactions(transactions)
+            elif choice == "3":
+                show_balance(transactions)
+            elif choice == "4":
+                print("\nGoodbye!")
+                break
+            else:
+                print("Invalid choice. Please enter 1, 2, 3, or 4.")
 
+    except KeyboardInterrupt:
+        print("\n\n Program interrupted by user (Ctrl+C).")
+    finally:
+        print(f"\n📋 Session ended. Transactions recorded this session: {len(transactions)}")
+        print("Note: Data is not saved to disk. All records are cleared on exit.")
 
 if __name__ == "__main__":
     main()
