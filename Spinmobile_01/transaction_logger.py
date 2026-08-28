@@ -97,6 +97,30 @@ def view_transactions(transactions):
     print("─" * 55)
     print(f"Total transactions: {len(transactions)}")
 
+def show_balance(transactions):
+    """Calculate and display income, expenses, and net balance."""
+    print("\n--- Account Balance ---")
+
+    if not transactions:
+        print("No transactions to calculate.")
+        return
+
+    income = sum(t["amount"] for t in transactions if t["type"] == "income")
+    expenses = sum(t["amount"] for t in transactions if t["type"] == "expense")
+    balance = income - expenses
+
+    print(f"\n  Total Income:  KES {income:>12,.2f}")
+    print(f"Total Expenses: KES {expenses:>12,.2f}")
+    print(" " + "─" * 30)
+    print(f"Net Balance: KES {balance:>12,.2f}")
+
+    if balance > 0:
+        print("\n  Status:Positive — you're in the clear.")
+    elif balance == 0:
+        print("\n  Status:Break even — income equals expenses.")
+    else:
+        print("\n  Status:Negative — review your expenses.")
+
 def main():
     """Main application entry point. Manages the transaction list."""
     transactions = []
@@ -114,7 +138,7 @@ def main():
         elif choice == "2":
             view_transactions(transactions)
         elif choice == "3":
-            print("→ Show balance (coming soon)")
+            show_balance(transactions)
         elif choice == "4":
             print("\nGoodbye!")
             break
