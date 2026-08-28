@@ -58,6 +58,26 @@ def get_valid_description():
             return description
         print("Description cannot be empty.")
 
+
+def add_transaction(transactions):
+    """ Collect transaction details from user and add to the transactions list.
+    Args:
+        transactions (list): The running list of all transactions."""
+    print("\n--- Add New Transaction ---")
+
+    t_type = get_valid_type()
+    amount = get_valid_amount()
+    description = get_valid_description()
+
+    transaction = {
+        "type": t_type,
+        "amount": amount,
+        "description": description
+    }
+
+    transactions.append(transaction)
+    print(f"Added: {t_type.upper()} of KES {amount:,.2f} — {description}")
+
 def main():
     """Main application entry point. Manages the transaction list."""
     transactions = []
@@ -71,7 +91,7 @@ def main():
         choice = input("\nEnter choice (1-4): ").strip()
 
         if choice == "1":
-            print("→ Add transaction (coming soon)")
+            add_transaction(transactions)
         elif choice == "2":
             print("→ View transactions (coming soon)")
         elif choice == "3":
