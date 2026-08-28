@@ -32,7 +32,7 @@ def get_valid_amount():
 
     while True:
         try:
-            raw = input("Enter amount in(KES): ").strip()
+            raw = input("Enter amount (KES): ").strip()
             amount = float(raw)
             if amount <= 0:
                 raise InvalidAmountError("Amount must be greater than zero .")
@@ -80,7 +80,7 @@ def add_transaction(transactions):
 
 def view_transactions(transactions):
     """Display all recorded transactions in a formatted table."""
-    print("\n---Transaction History ---")
+    print("\n--- Transaction History ---")
 
     if not transactions:
         print("No transactions recorded yet.")
@@ -109,17 +109,17 @@ def show_balance(transactions):
     expenses = sum(t["amount"] for t in transactions if t["type"] == "expense")
     balance = income - expenses
 
-    print(f"\n  Total Income:  KES {income:>12,.2f}")
-    print(f"Total Expenses: KES {expenses:>12,.2f}")
+    print(f"\n  Total Income:   KES {income:>12,.2f}")
+    print(f" Total Expenses: KES {expenses:>12,.2f}")
     print(" " + "─" * 30)
-    print(f"Net Balance: KES {balance:>12,.2f}")
+    print(f" Net Balance: KES {balance:>12,.2f}")
 
     if balance > 0:
-        print("\n  Status:Positive — you're in the clear.")
+        print("\n  Status: Positive — you're in the clear.")
     elif balance == 0:
-        print("\n  Status:Break even — income equals expenses.")
+        print("\n  Status: Break even — income equals expenses.")
     else:
-        print("\n  Status:Negative — review your expenses.")
+        print("\n  Status: Negative — review your expenses.")
 
 def main():
     """Main application entry point."""
