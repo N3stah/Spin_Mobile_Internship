@@ -45,3 +45,24 @@ print("After Update:", transaction)
 """Delete: remove key"""
 del transaction["description"]
 print("After Delete:", transaction)
+
+# 5. Set Operations
+file1_types = ["income", "expense", "transfer", "expense"]
+file2_types = ["expense", "investment", "income"]
+
+set1 = set(file1_types)
+set2 = set(file2_types)
+
+common_types = set1 & set2
+unique_to_file1 = set1 - set2
+
+print("\nCommon types      :", common_types)
+print("Unique to file 1  :", unique_to_file1)
+
+# 6. Safe Field Retrieval Function
+def get_field(record, field, default=None):
+    return record.get(field, default)
+
+sample_record = {"name": "Spin Mobile", "role": "Intern"}
+print("\nFetched 'role'   :", get_field(sample_record, "role", "N/A"))
+print("Fetched 'salary' :", get_field(sample_record, "salary", "N/A"))
