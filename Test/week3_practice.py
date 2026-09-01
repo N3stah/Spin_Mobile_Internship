@@ -27,3 +27,21 @@ high_value_desc = [t["desc"] for t in transactions if t["amount"] > 1000]
 print("\nHigh-value descriptions (>1000):", high_value_desc)
 low_value_disc = [t["desc"]for t in transactions if t["amount"] < 500]
 print("Low value descriptions (<500):", low_value_disc)
+
+#Tuples, Sets & Dictionaries
+
+# 4. Dictionary CRUD Operations
+transaction = {"type": "expense", "amount": 1500}
+print("\nInitial Dict:", transaction)
+
+"""Create: add new key"""
+transaction["description"] = "Office Supplies"
+print("After Add   :", transaction)
+
+"""modify existing key"""
+transaction["amount"] = 1800
+print("After Update:", transaction)
+
+"""Delete: remove key"""
+del transaction["description"]
+print("After Delete:", transaction)
