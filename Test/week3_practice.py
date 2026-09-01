@@ -14,3 +14,16 @@ every_3rd = numbers[::3]
 print("\nFirst half :", first_half)
 print("Second half:", second_half)
 print("Every 3rd  :", every_3rd)
+
+# 3. List Comprehension Practice
+transactions = [
+    {"desc": "Salary", "amount": 5000},
+    {"desc": "Coffee", "amount": 150},
+    {"desc": "Laptop", "amount": 1200},
+    {"desc": "Cab", "amount": 450}
+]
+
+high_value_desc = [t["desc"] for t in transactions if t["amount"] > 1000]
+print("\nHigh-value descriptions (>1000):", high_value_desc)
+low_value_disc = [t["desc"]for t in transactions if t["amount"] < 500]
+print("Low value descriptions (<500):", low_value_disc)
