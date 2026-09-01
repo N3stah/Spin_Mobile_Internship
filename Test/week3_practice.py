@@ -66,3 +66,46 @@ def get_field(record, field, default=None):
 sample_record = {"name": "Spin Mobile", "role": "Intern"}
 print("\nFetched 'role'   :", get_field(sample_record, "role", "N/A"))
 print("Fetched 'salary' :", get_field(sample_record, "salary", "N/A"))
+
+# File IO: Reading & Writing Flat Files
+# 7. Writing and Appending to Flat Text Files
+file_name = "notes.txt"
+
+# 'w' mode opens a file for writing (creates a new file or overwrites existing content)
+with open(file_name, "w") as f:# Using 'with open()' guarantees the file closes automatically when the block finishes
+                               # 'w' mode opens a file for writing (creates a new file or overwrites existing content)
+    f.write("Line 1: Setting up week 3 practice notes.\n")
+    f.write("Line 2: Practicing context managers.\n")
+
+# 'a' mode appends new content to the end without erasing existing text
+with open(file_name, "a") as f:
+    f.write("Line 3: Appended entry using 'a' mode.\n")
+    f.write("Line 4: Final note appended successfully.\n")
+
+# 'r' mode opens the file for reading line-by-line (memory-efficient)
+print("\n--- Full Contents of notes.txt ---")
+with open(file_name, "r") as f:
+    for line in f:
+        # .strip() removes whitespace and trailing newline characters (\n)
+        print(line.strip())
+
+# 8. Manual CSV Creation and Line-by-Line Parsing
+csv_file = "users.csv"
+
+with open(csv_file, "w") as f:  # Manually build a CSV file with a header row and 3 records
+    f.write("name,age\n")
+    f.write("Mark,24\n")
+    f.write("Judy,26\n")
+    f.write("Abbie,22\n")
+
+print("\n--- Parsed CSV Output ---")
+with open(csv_file, "r") as f:
+    lines = f.readlines()      # f.readlines() reads all lines into a Python list of strings
+      # Extract and inspect header fields
+header = lines[0].strip().split(",")  # ['name', 'age']
+
+for line in lines[1:]:   # Process remaining lines by slicing from index 1 onward to skip the header
+    # Strip whitespace and split string by comma separator into a list
+    fields = line.strip().split(",")
+    name, age = fields  # Unpack list elements directly into variables
+    print(f"Name: {name}, Age: {age}")
