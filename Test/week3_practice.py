@@ -1,4 +1,5 @@
 import json
+import time
 
 #Deep Indexing & Slicing
 # 1. String Slicing
@@ -160,3 +161,56 @@ with open(student_file, "r") as f:
 second_score = reloaded_student["student"]["scores"][1]
 print("\nStudent Name :", reloaded_student["student"]["name"])
 print("Second Score :", second_score)  # Output: 90
+
+#Big-O Notation & Complexity Awareness
+
+# 10 Benchmarking Search Performance: List O(n) vs Set O(1)
+# Create a large dataset
+big_list = list(range(100000))
+big_set = set(big_list)
+target = 99999  # Target placed at the very end to force worst-case search
+
+# Benchmark O(n) search in List (scans items sequentially)
+start_time = time.perf_counter()
+found_in_list = target in big_list
+list_duration = time.perf_counter() - start_time
+
+# Benchmark O(1) search in Set (uses hash table lookup)
+start_time = time.perf_counter()
+found_in_set = target in big_set
+set_duration = time.perf_counter() - start_time
+
+print(f"\nlist search O(n) took: {list_duration:.6f} seconds")
+print(f"Set search  O(1) took: {set_duration:.6f} seconds")
+
+# 11. Time vs Space Trade-off Demonstration
+# Dataset with 2,000 items and a single duplicate value (100)
+sample_data = list(range(2000)) + [100]
+
+# Slow approach: O(n^2) time complexity, O(1) extra space (nested loops)
+def has_duplicate_slow(items):
+    for i in range(len(items)):
+        for j in range(i + 1, len(items)):
+            if items[i] == items[j]:
+                return True
+    return False
+
+# Fast approach: O(n) time complexity, O(n) extra space (uses a 'seen' set)
+def has_duplicate_fast(items):
+    seen = set()  # Allocating extra memory to gain speed
+    for item in items:
+        if item in seen:  # O(1) average lookup
+            return True
+        seen.add(item)
+    return False
+
+start_slow = time.perf_counter()
+has_duplicate_slow(sample_data)
+slow_time = time.perf_counter() - start_slow
+
+start_fast = time.perf_counter()
+has_duplicate_fast(sample_data)
+fast_time = time.perf_counter() - start_fast
+
+print(f"\nSlow duplicate check O(n^2): {slow_time:.6f} seconds")
+print(f"Fast duplicate check O(n)  : {fast_time:.6f} seconds")
