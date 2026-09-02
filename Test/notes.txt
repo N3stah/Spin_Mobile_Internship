@@ -1,0 +1,4 @@
+Line 1: Setting up week 3 practice notes.
+Line 2: Practicing context managers.
+Line 3: Appended entry using 'a' mode.
+Line 4: Final note appended successfully.

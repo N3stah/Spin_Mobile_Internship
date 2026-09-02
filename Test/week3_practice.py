@@ -1,3 +1,5 @@
+import json
+
 #Deep Indexing & Slicing
 # 1. String Slicing
 sentence = "Spin Mobile Internship 2026"
@@ -109,3 +111,52 @@ for line in lines[1:]:   # Process remaining lines by slicing from index 1 onwar
     fields = line.strip().split(",")
     name, age = fields  # Unpack list elements directly into variables
     print(f"Name: {name}, Age: {age}")
+
+#JSON: Structured Tree Data
+# 9. Transaction Summary Serialization (dict -> JSON file -> dict)
+summary_data = {
+    "total_income": 12500.50,
+    "total_expenses": 3400.20,
+    "transaction_count": 18,
+    "is_verified": True,
+    "notes": None  # Serializes to 'null' in JSON
+}
+summary_file = "summary.json"
+
+# 'json.dump()' writes a Python object directly to a file handle
+# 'indent=2' formats the output with 2-space indentation for human readability
+with open(summary_file, "w") as f:
+    json.dump(summary_data, f, indent=2)
+
+print("--- Data Written to summary.json ---")
+
+# 'json.load()' reads a JSON file directly into a Python dictionary
+with open(summary_file, "r") as f:
+    reloaded_summary = json.load(f)
+
+print("Reloaded Summary Dict:", reloaded_summary)
+print("Verified Status     :", reloaded_summary["is_verified"])
+
+
+# 2. Nested JSON Tree Structures
+student_record = {
+    "student": {
+        "name": "Mark",
+        "scores": [85, 90, 78]
+    }
+}
+
+student_file = "student.json"
+
+# Write nested dict to file
+with open(student_file, "w") as f:
+    json.dump(student_record, f, indent=2)
+
+# Load and query nested structure
+with open(student_file, "r") as f:
+    reloaded_student = json.load(f)
+
+# Accessing nested list elements via standard dict keying and list indexing
+second_score = reloaded_student["student"]["scores"][1]
+print("\nStudent Name :", reloaded_student["student"]["name"])
+print("Second Score :", second_score)  # Output: 90
