@@ -94,13 +94,28 @@ def write_summary(metrics, output_path):
     with open(output_path, "w") as f:
         json.dump(metrics, f, indent=2)
     print(f"Summary written to {output_path}")
+    #Main entry point
+
+def main():
+    """Main entry point: parse CSV, calculate metrics, write JSON summary."""
+    input_path = "sample_transactions.csv"
+    output_path = "transaction_summary.json"
+
+    print(f"Reading transactions from {input_path}...")
+    transactions = load_transactions(input_path)
+
+    if not transactions:
+        print("No transactions to process. Exiting.")
+        return
+
+    print("Calculating metrics...")
+    metrics = calculate_metrics(transactions)
+
+    print("\n--- Summary ---")
+    for key, value in metrics.items():
+        print(f"  {key}: {value}")
+
+    write_summary(metrics, output_path)
 
 if __name__ == "__main__":
-    transactions = load_transactions("sample_transactions.csv")
-    metrics = calculate_metrics(transactions)
-    print("\n--- Metrics Calculation Summary ---")
-    for key, value in metrics.items():
-        print(f"{key}: {value}")
-
-    # calling the write_summarry to export to JSON file
-    write_summary(metrics, "transaction_summary.json")
+    main()
