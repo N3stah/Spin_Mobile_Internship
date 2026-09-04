@@ -23,8 +23,20 @@ def read_csv_raw(filepath):
         lines = f.readlines()
     return lines
 
-# manual test
+def parse_line(line):
+    fields = line.strip().split(",")
+    t_type = fields[0].strip().lower()
+    amount = float(fields[1].strip())
+    description = fields[2].strip()
+
+    return {
+        "type": t_type,
+        "amount": amount,
+        "description": description
+    }
+
+# Test parsing the first data row (skipping header at index 0)
 if __name__ == "__main__":
     lines = read_csv_raw("sample_transactions.csv")
-    print(lines[0])   # header in .csv
-    print(lines[1])   # first data row
+    third_transaction = parse_line(lines[3])
+    print(third_transaction)
