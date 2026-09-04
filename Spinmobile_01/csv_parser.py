@@ -35,8 +35,22 @@ def parse_line(line):
         "description": description
     }
 
-# Test parsing the first data row (skipping header at index 0)
+def load_transactions(filepath):
+    try:
+        lines = read_csv_raw(filepath)
+    except FileNotFoundError:
+        print(f"File not found: {filepath}")
+        return []
+    if not lines:
+        print("File is empty.")
+        return []
+
+    # Time complexity: O(n) — one pass through n data rows
+    transactions = [parse_line(line) for line in lines[1:] if line.strip()]
+    return transactions
+
 if __name__ == "__main__":
-    lines = read_csv_raw("sample_transactions.csv")
-    third_transaction = parse_line(lines[3])
-    print(third_transaction)
+    transactions = load_transactions("sample_transactions.csv")
+    print(f"Successfully loaded {len(transactions)} transactions:")
+    for t in transactions:
+        print(t)
