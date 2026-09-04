@@ -45,12 +45,23 @@ def load_transactions(filepath):
         print("File is empty.")
         return []
 
+    transactions = []
+    skipped = 0
+
     # Time complexity: O(n) — one pass through n data rows
-    transactions = [parse_line(line) for line in lines[1:] if line.strip()]
+    for i, line in enumerate(lines[1:], start=2):  # start=2: header is row 1
+        if not line.strip():
+            continue
+        try:
+            transactions.append(parse_line(line))
+        except (ValueError, IndexError) as e:
+            print(f"⚠ Skipping row {i}: {e}")
+            skipped += 1
+
+    print(f"✓ Parsed {len(transactions)} transactions, skipped {skipped} malformed row.")
     return transactions
 
 if __name__ == "__main__":
     transactions = load_transactions("sample_transactions.csv")
-    print(f"Successfully loaded {len(transactions)} transactions:")
     for t in transactions:
         print(t)
