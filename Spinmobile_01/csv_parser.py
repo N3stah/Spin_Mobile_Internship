@@ -55,13 +55,44 @@ def load_transactions(filepath):
         try:
             transactions.append(parse_line(line))
         except (ValueError, IndexError) as e:
-            print(f"⚠ Skipping row {i}: {e}")
+            print(f" Skipping row {i}: {e}")
             skipped += 1
 
-    print(f"✓ Parsed {len(transactions)} transactions, skipped {skipped} malformed row.")
+    print(f" Parsed {len(transactions)} transactions, skipped {skipped} malformed row.")
     return transactions
+
+def calculate_metrics(transactions):
+    if not transactions:
+        return {
+            "total_income": 0,
+            "total_expenses": 0,
+            "net_balance": 0,
+            "transaction_count": 0,
+            "average_amount": 0,
+            "unique_types": []
+        }
+
+    # Time complexity: O(n) each — three separate passes over n transactions
+    total_income = sum(t["amount"] for t in transactions if t["type"] == "income")
+    total_expenses = sum(t["amount"] for t in transactions if t["type"] == "expense")
+    unique_types = {t["type"] for t in transactions}   # set comprehension
+
+    count = len(transactions)
+    total_amount = sum(t["amount"] for t in transactions)
+    average = total_amount / count if count else 0
+
+    return {
+        "total_income": round(total_income, 2),
+        "total_expenses": round(total_expenses, 2),
+        "net_balance": round(total_income - total_expenses, 2),
+        "transaction_count": count,
+        "average_amount": round(average, 2),
+        "unique_types": sorted(unique_types)
+    }
 
 if __name__ == "__main__":
     transactions = load_transactions("sample_transactions.csv")
-    for t in transactions:
-        print(t)
+    metrics = calculate_metrics(transactions)
+    print("\n--- Metrics Calculation Summary ---")
+    for key, value in metrics.items():
+        print(f"{key}: {value}")
