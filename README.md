@@ -37,7 +37,7 @@ Spin_Mobile_Internship/
 | Week | Dates | Topic | Status |
 |---|---|---|---|
 | 1 | Aug 17–21 | Git, GitHub & Developer Environment Setup | ✅ Complete |
-| 2 | Aug 24–28 | Python Fundamentals & Basic Control Flow | 🔄 In Progress |
+| 2 | Aug 24–28 | Python Fundamentals & Basic Control Flow | ✅ Complete |
 | 3 | Aug 31–Sep 4 | Data Structures, File Handling & Big-O | ⏳ |
 | 4 | Sep 7–11 | OOP & SOLID Design Principles | ⏳ |
 | 5 | Sep 14–18 | SQL, Database Design & ERD | ⏳ |
