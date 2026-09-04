@@ -90,9 +90,17 @@ def calculate_metrics(transactions):
         "unique_types": sorted(unique_types)
     }
 
+def write_summary(metrics, output_path):
+    with open(output_path, "w") as f:
+        json.dump(metrics, f, indent=2)
+    print(f"Summary written to {output_path}")
+
 if __name__ == "__main__":
     transactions = load_transactions("sample_transactions.csv")
     metrics = calculate_metrics(transactions)
     print("\n--- Metrics Calculation Summary ---")
     for key, value in metrics.items():
         print(f"{key}: {value}")
+
+    # calling the write_summarry to export to JSON file
+    write_summary(metrics, "transaction_summary.json")
