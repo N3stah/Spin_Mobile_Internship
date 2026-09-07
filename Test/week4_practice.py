@@ -88,3 +88,20 @@ acc2 = BankAccount("Sarah", 2500)
 acc1.deposit(500)
 print(f"{acc1.owner_name} ({BankAccount.BANK_NAME}): ${acc1.get_balance()}")
 print(f"{acc2.owner_name} ({BankAccount.BANK_NAME}): ${acc2.get_balance()}")
+
+#
+class Counter:
+    total_created = 0  # Class attribute shared across all instances
+
+    def __init__(self):
+        # Increment the shared class attribute whenever a new instance is created
+        Counter.total_created += 1
+
+
+# Create 3 instances
+c1 = Counter()
+c2 = Counter()
+c3 = Counter()
+
+# Output the shared class count
+print(Counter.total_created)  # Outputs: 3
