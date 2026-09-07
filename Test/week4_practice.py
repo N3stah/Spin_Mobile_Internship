@@ -59,3 +59,32 @@ calculated_tax, final_price = calculate_total(1000)
 
 print(f"Tax: {currency} {calculated_tax}")
 print(f"Total: {currency} {final_price}")
+
+#Classes, init, self, class vs instance attributes
+print("\n--- WEEK 2 PRACTICE ---")
+class BankAccount:
+    """Represents a simple bank account."""
+    BANK_NAME = "Spin Mobile Bank"  # Class attribute (shared)
+
+    def __init__(self, owner_name: str, starting_balance: float):
+        # Instance attributes (unique per object)
+        self.owner_name = owner_name
+        self.balance = starting_balance
+
+    def deposit(self, amount: float) -> float:
+        """Adds funds to the instance balance."""
+        self.balance += amount
+        return self.balance
+
+    def get_balance(self) -> float:
+        """Returns current balance."""
+        return self.balance
+
+
+# Instantiating two unique objects
+acc1 = BankAccount("Mark", 1000.99)
+acc2 = BankAccount("Sarah", 2500)
+
+acc1.deposit(500)
+print(f"{acc1.owner_name} ({BankAccount.BANK_NAME}): ${acc1.get_balance()}")
+print(f"{acc2.owner_name} ({BankAccount.BANK_NAME}): ${acc2.get_balance()}")
