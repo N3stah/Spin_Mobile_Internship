@@ -89,7 +89,7 @@ acc1.deposit(500)
 print(f"{acc1.owner_name} ({BankAccount.BANK_NAME}): ${acc1.get_balance()}")
 print(f"{acc2.owner_name} ({BankAccount.BANK_NAME}): ${acc2.get_balance()}")
 
-#
+# writing a class counter that has a class attribute.
 class Counter:
     total_created = 0  # Class attribute shared across all instances
 
