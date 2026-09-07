@@ -1,9 +1,9 @@
 type,amount,description
-income,3303,Salary
+income,100.098,Salary
 expense,552,Groceries
-expense,300,Matatu fare
-income,5000,55926
-expense,15000,Rent
+expense,9,Matatu fare
+income,802.26,55926
+expense,2,Rent
 expense,450,Airtime
 income,2000,Side hustle
 expense,800,Lunch
