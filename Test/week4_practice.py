@@ -1,3 +1,5 @@
+from abc import ABC, abstractmethod
+
 #recap on type casting, loop and conditionals, functions, and exceptions.
 
 #Type casting
@@ -105,3 +107,53 @@ c3 = Counter()
 
 # Output the shared class count
 print(Counter.total_created)  # Outputs: 3
+
+#6. Abstraction & Polymorphism
+class Vehicle(ABC):
+    @abstractmethod
+    def fuel_type(self) -> str:
+        """Every vehicle subclass must implement its fuel type."""
+        pass
+
+class ElectricCar(Vehicle):
+    def fuel_type(self) -> str:
+        return "Electricity"
+
+class PetrolCar(Vehicle):
+    def fuel_type(self) -> str:
+        return "Unleaded Petrol"
+
+# Polymorphism in action: loop through distinct subclasses uniformly
+vehicles = [ElectricCar(), PetrolCar()]
+for m in vehicles:
+    print(f"Vehicle fuel type: {m.fuel_type()}")
+
+#7. Encapsulation & Inheritance
+class Employee:
+    def __init__(self, name: str, salary: float):
+        self.name = name
+        self._salary = salary  # Protected attribute
+
+    @property
+    def salary(self) -> float:
+        """Read-only property access."""
+        return self._salary
+
+    def get_pay(self) -> float:
+        return self._salary
+
+class Manager(Employee):
+    def __init__(self, name: str, salary: float, bonus: float):
+        super().__init__(name, salary)  # Delegate name and salary to parent
+        self.bonus = bonus
+
+    def get_pay(self) -> float:
+        """Override parent method to add bonus."""
+        return self.salary + self.bonus
+
+# Test implementation
+emp = Employee("Mark", 50000)
+mgr = Manager("Sarah", 80000, 15000)
+
+print(f"{emp.name} Pay: ${emp.get_pay()}")
+print(f"{mgr.name} Pay: ${mgr.get_pay()}")
