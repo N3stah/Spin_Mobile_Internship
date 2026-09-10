@@ -157,3 +157,29 @@ mgr = Manager("Sarah", 80000, 15000)
 
 print(f"{emp.name} Pay: ${emp.get_pay()}")
 print(f"{mgr.name} Pay: ${mgr.get_pay()}")
+
+#DRY AND KISS
+# Refactor these three functions to remove the duplicated validation logic.
+def validate_rate(rate):
+    """Helper function to validate tax rates, keeping code DRY."""
+    if rate < 0 or rate > 1:
+        raise ValueError("Rate must be between 0 and 1")
+
+def calculate_income_tax(rate, amount):
+    validate_rate(rate)
+    return amount * rate
+
+def calculate_expense_tax(rate, amount):
+    validate_rate(rate)
+    return amount * rate
+
+def calculate_transfer_tax(rate, amount):
+    validate_rate(rate)
+    return amount * rate
+
+# SRP in Week 3 csv_parser.py
+
+# In Week 3's csv_parser.py, I have found that the load_transactions (filepath) function violates SRP because it handles two distinct jobs:
+# one, been Validating and reading the file, that  is handling FileNotFoundError and checking if it is empty.
+# second, Iterating over the lines by parsing them, and catching ValueError/IndexError formatting errors.
+# To be able to fully follow SRP, we could split this into a read_valid_lines(filepath) for file validation, and parse_all_rows(lines) strictly for data processing.
