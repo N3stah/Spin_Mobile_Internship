@@ -174,3 +174,14 @@ class JSONReportWriter(ReportWriter):
         with open(output_path, "w") as f:
             json.dump(metrics, f, indent=2)
         print(f"Summary written to {output_path}")
+
+class PrettyJSONReportWriter(JSONReportWriter):
+    """ Extends JSONReportWriter to also print a human-readable console summary.
+    """
+    def write(self, metrics, output_path):
+        """Print a formatted console summary, then write JSON (overridden)."""
+        print("\n--- Report Summary ---")
+        for key, value in metrics.items():
+            print(f"  {key}: {value}")
+
+        super().write(metrics, output_path)   #it calls the parent's write()
