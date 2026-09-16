@@ -1,0 +1,12 @@
+[
+  {
+    "type": "income",
+    "amount": 25000,
+    "description": "Consulting"
+  },
+  {
+    "type": "expense",
+    "amount": 4000,
+    "description": "Internet Bill"
+  }
+]

@@ -9,7 +9,34 @@ Description:
     data from a source, calculates metrics, and writes a formatted report.
     Refactored from the Week 3 procedural csv_parser.py following SOLID
     design principles.
+
+SOLID PRINCIPLES APPLIED IN THIS REFACTOR:
+S — Single Responsibility Principle
+    Each class has exactly one reason to change:
+    - Transaction: owns validation of one transaction's data
+    - CSVDataSource / JSONDataSource: own reading and parsing their specific formats
+    - MetricsCalculator: owns computing summary statistics
+    - JSONReportWriter / PrettyJSONReportWriter: own formatting and writing output
+    - ReportingPipeline: owns orchestrating the steps in order
+
+O — Open/Closed Principle
+    DataSource and ReportWriter are abstract base classes. New formats
+    can be added by creating new subclasses — no existing class needs modification.
+
+L — Liskov Substitution Principle
+    Any subclass of DataSource (like CSVDataSource or JSONDataSource) can replace
+    another anywhere a DataSource is expected without breaking the pipeline.
+
+I — Interface Segregation Principle
+    DataSource only requires load(). ReportWriter only requires write().
+    Neither forces implementing classes to define methods they don't use.
+
+D — Dependency Inversion Principle
+    ReportingPipeline depends on abstract DataSource, MetricsCalculator,
+    and ReportWriter types — not on concrete file readers directly.
+    Concrete classes are injected from main().
 """
+
 from abc import ABC, abstractmethod
 import json
 
@@ -262,7 +289,7 @@ class ReportingPipeline:
 
 def main():
     """Wire up concrete implementations and testing the pipeline."""
-    data_source = JSONDataSource("transactions.json")
+    data_source = JSONDataSource("transactions.json") # Or CSVDataSource("sample_transactions.csv")
     calculator = MetricsCalculator()
     writer = PrettyJSONReportWriter()
 
