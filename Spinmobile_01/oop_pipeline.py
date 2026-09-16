@@ -185,3 +185,33 @@ class PrettyJSONReportWriter(JSONReportWriter):
             print(f"  {key}: {value}")
 
         super().write(metrics, output_path)   #it calls the parent's write()
+
+class ReportingPipeline:
+    """ Orchestrates the full pipeline: load data, calculate metrics, write report.
+    Depends only on abstract DataSource, MetricsCalculator, and ReportWriter —
+    not on any concrete implementation. This means the pipeline works
+    identically regardless of which data source or writer is plugged in.
+    """
+    def __init__(self, data_source, calculator, writer):
+        """ Args:
+            data_source (DataSource): Any concrete data source.
+            calculator (MetricsCalculator): The metrics calculator.
+            writer (ReportWriter): Any concrete report writer.
+        """
+        self._data_source = data_source
+        self._calculator = calculator
+        self._writer = writer
+
+    def run(self, output_path):
+        """Execute the full pipeline end to end."""
+        print(f"Loading transactions...")
+        transactions = self._data_source.load()
+
+        if not transactions:
+            print("No transactions to process. Exiting.")
+            return
+
+        print("Calculating metrics...")
+        metrics = self._calculator.calculate(transactions)
+
+        self._writer.write(metrics, output_path)
