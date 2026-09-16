@@ -113,3 +113,45 @@ class CSVDataSource(DataSource):
 
         print(f"Parsed {len(transactions)} transactions, skipped {skipped} malformed row(s).")
         return transactions
+
+class MetricsCalculator:
+    """Calculates summary metrics from a list of Transaction objects."""
+    def calculate(self, transactions):
+        """  Args:
+            transactions (list[Transaction]): Transactions to analyze.
+        Returns:
+            dict: Summary metrics.
+        """
+        if not transactions:
+            return self._empty_metrics()
+
+        total_income = 0
+        total_expenses = 0
+        unique_types = set()
+
+        # Time complexity: O(n) — single pass
+        for t in transactions:
+            unique_types.add(t.type)
+            if t.type == "income":
+                total_income += t.amount
+            elif t.type == "expense":
+                total_expenses += t.amount
+
+        count = len(transactions)
+        average = (total_income + total_expenses) / count if count else 0
+
+        return {
+            "total_income": round(total_income, 2),
+            "total_expenses": round(total_expenses, 2),
+            "net_balance": round(total_income - total_expenses, 2),
+            "transaction_count": count,
+            "average_amount": round(average, 2),
+            "unique_types": sorted(unique_types)
+        }
+
+    def _empty_metrics(self):
+        """Return a zeroed-out metrics dict for an empty transaction list."""
+        return {
+            "total_income": 0, "total_expenses": 0, "net_balance": 0,
+            "transaction_count": 0, "average_amount": 0, "unique_types": []
+        }
