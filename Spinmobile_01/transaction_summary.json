@@ -1,9 +1,9 @@
 {
-  "total_income": 2902.36,
-  "total_expenses": 1813.0,
-  "net_balance": 1089.36,
-  "transaction_count": 8,
-  "average_amount": 589.42,
+  "total_income": 25000.0,
+  "total_expenses": 4000.0,
+  "net_balance": 21000.0,
+  "transaction_count": 2,
+  "average_amount": 14500.0,
   "unique_types": [
     "expense",
     "income"
