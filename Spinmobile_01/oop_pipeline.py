@@ -155,3 +155,22 @@ class MetricsCalculator:
             "total_income": 0, "total_expenses": 0, "net_balance": 0,
             "transaction_count": 0, "average_amount": 0, "unique_types": []
         }
+
+class ReportWriter(ABC):
+    """Abstract base class for writing a metrics report to any output format."""
+    @abstractmethod
+    def write(self, metrics, output_path):
+        """ Write the metrics dict to the given output path.
+        Args:
+            metrics (dict): Summary metrics to write.
+            output_path (str): Destination file path.
+        """
+        pass
+
+class JSONReportWriter(ReportWriter):
+    """Writes a metrics report as a formatted JSON file."""
+    def write(self, metrics, output_path):
+        """Write metrics as indented JSON."""
+        with open(output_path, "w") as f:
+            json.dump(metrics, f, indent=2)
+        print(f"Summary written to {output_path}")
