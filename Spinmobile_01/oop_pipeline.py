@@ -114,6 +114,50 @@ class CSVDataSource(DataSource):
         print(f"Parsed {len(transactions)} transactions, skipped {skipped} malformed row(s).")
         return transactions
 
+class JSONDataSource(DataSource):
+    """Loads transactions from a JSON file."""
+
+    def __init__(self, filepath):
+        self._filepath = filepath
+
+    def load(self):
+        """
+        Read the JSON file and return a list of Transaction objects.
+
+        Returns:
+            list[Transaction]: Successfully parsed transactions.
+        """
+        try:
+            with open(self._filepath, "r") as f:
+                data = json.load(f)
+        except FileNotFoundError:
+            print(f"File not found: {self._filepath}")
+            return []
+        except json.JSONDecodeError:
+            print(f"Invalid JSON format in: {self._filepath}")
+            return []
+
+        transactions = []
+        skipped = 0
+
+        # Iterate over the loaded list of dictionaries from the JSON file
+        for i, item in enumerate(data, start=1):
+            try:
+                # Safely pull fields using dictionary keys
+                t_type = item.get("type")
+                amount = item.get("amount")
+                description = item.get("description")
+
+                # Instantiate our validated Transaction model
+                transaction = Transaction(t_type, amount, description)
+                transactions.append(transaction)
+            except (ValueError, InvalidAmountError) as e:
+                print(f"Skipping JSON record {i}: {e}")
+                skipped += 1
+
+        print(f"Parsed {len(transactions)} transactions from JSON, skipped {skipped} invalid record(s).")
+        return transactions
+
 class MetricsCalculator:
     """Calculates summary metrics from a list of Transaction objects."""
     def calculate(self, transactions):
@@ -218,7 +262,7 @@ class ReportingPipeline:
 
 def main():
     """Wire up concrete implementations and testing the pipeline."""
-    data_source = CSVDataSource("sample_transactions.csv")
+    data_source = JSONDataSource("transactions.json")
     calculator = MetricsCalculator()
     writer = PrettyJSONReportWriter()
 
