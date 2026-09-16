@@ -215,3 +215,16 @@ class ReportingPipeline:
         metrics = self._calculator.calculate(transactions)
 
         self._writer.write(metrics, output_path)
+
+def main():
+    """Wire up concrete implementations and testing the pipeline."""
+    data_source = CSVDataSource("sample_transactions.csv")
+    calculator = MetricsCalculator()
+    writer = PrettyJSONReportWriter()
+
+    pipeline = ReportingPipeline(data_source, calculator, writer)
+    pipeline.run("transaction_summary.json")
+
+
+if __name__ == "__main__":
+    main()
