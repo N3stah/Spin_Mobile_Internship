@@ -24,4 +24,6 @@ env/
 Thumbs.db
 
 # Jupyter Notebook checkpoints (if practicing in notebooks)
-.ipynb_checkpoints/
+.ipynb_checkpoints/.env
+venv/
+Spinmobile_01/.env
