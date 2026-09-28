@@ -38,9 +38,9 @@ Spin_Mobile_Internship/
 |---|---|---|---|
 | 1 | Aug 17–21 | Git, GitHub & Developer Environment Setup | ✅ Complete |
 | 2 | Aug 24–28 | Python Fundamentals & Basic Control Flow | ✅ Complete |
-| 3 | Aug 31–Sep 4 | Data Structures, File Handling & Big-O | ⏳ |
-| 4 | Sep 7–11 | OOP & SOLID Design Principles | ⏳ |
-| 5 | Sep 14–18 | SQL, Database Design & ERD | ⏳ |
+| 3 | Aug 31–Sep 4 | Data Structures, File Handling & Big-O | ✅ Complete |
+| 4 | Sep 7–11 | OOP & SOLID Design Principles | ✅ Complete |
+| 5 | Sep 14–18 | SQL, Database Design & ERD | ✅ Complete |
 | 6 | Sep 21–25 | Web Fundamentals & Django Backend | ⏳ |
 | 7 | Sep 28–Oct 2 | Frontend Web Development & API Consumption | ⏳ |
 | 8 | Oct 5–9 | Capstone Project Kickoff & Backend Foundation | ⏳ |
