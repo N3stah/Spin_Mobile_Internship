@@ -24,3 +24,13 @@ I learned three critical rules about exception handling in Python:
 **How I figured it out:** I used a string `.split(': ')` method to separate the text from the number and cast the number to a `float`. To handle the dictionary safely, I initially used an `if category in totals:` block to check if the key existed before adding to it.
 I then learned the "Pythonic" shortcut to do this in a single line without `if/else` statements using the `.get()` method:
 `totals[category] = totals.get(category, 0) + amount`
+
+# Development and Learning Log
+
+## Date: September 29, 2026
+**What I did:**
+Transitioned from standalone Python scripts to web software architecture. Studied the Client-Server model and mapped HTTP methods (GET, POST, PUT, DELETE) directly to SQL CRUD operations along with their status codes (200, 201, 204, 400, 404).
+**What confused me:**
+I initially thought the server initiated conversations, and I mistakenly assigned the `PUT` method to a scenario where I was trying to fetch a product that doesn't exist. 
+**How I figured it out:**
+I learned that the **client** (browser, Postman, mobile app) always initiates the HTTP Request, while the server runs permanently, waiting to respond. I also realized that *fetching* data must always use a `GET` request (mapping to SQL's `SELECT`), even if the final result is a `404 Not Found` error, because `GET` requests must never modify data.
