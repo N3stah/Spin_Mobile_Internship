@@ -41,3 +41,10 @@ Studied REST (Representational State Transfer) architecture, focusing on buildin
 I initially included action verbs in my API endpoints (like `/createNewOrder` and `/getAllProducts`) and used singular nouns for the resources (like `/api/order`). 
 **How I figured it out:** 
 I learned the golden rule of REST: the URL dictates *what* the resource is (using plural nouns), and the HTTP method dictates *how* to interact with it (the verb). I corrected my endpoints to use collection-based URLs (e.g., `POST /api/orders/` to create, `GET /api/products/` to fetch all) and appended IDs to fetch specific records (e.g., `GET /api/posts/7/`).
+
+**What I did:** 
+Studied Django's architecture, specifically the difference between a Project (the global configuration) and an App (a self-contained feature module). Mapped out Django's two-level URL routing system.
+**What confused me:** 
+How Django knows where to send an incoming HTTP request and how it extracts data from the URL itself.
+**How I figured it out:** 
+I learned the exact request chain: Django checks the project-level `urls.py` first, uses `include()` to hand off the request to the app-level `urls.py`, and then uses path converters like `<int:product_id>` to capture URL parameters and pass them as variables directly into the view function.
