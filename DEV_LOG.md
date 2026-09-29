@@ -34,3 +34,10 @@ Transitioned from standalone Python scripts to web software architecture. Studie
 I initially thought the server initiated conversations, and I mistakenly assigned the `PUT` method to a scenario where I was trying to fetch a product that doesn't exist. 
 **How I figured it out:**
 I learned that the **client** (browser, Postman, mobile app) always initiates the HTTP Request, while the server runs permanently, waiting to respond. I also realized that *fetching* data must always use a `GET` request (mapping to SQL's `SELECT`), even if the final result is a `404 Not Found` error, because `GET` requests must never modify data.
+
+**What I did:** 
+Studied REST (Representational State Transfer) architecture, focusing on building stateless APIs and resource-based URL routing with JSON payloads.
+**What confused me:** 
+I initially included action verbs in my API endpoints (like `/createNewOrder` and `/getAllProducts`) and used singular nouns for the resources (like `/api/order`). 
+**How I figured it out:** 
+I learned the golden rule of REST: the URL dictates *what* the resource is (using plural nouns), and the HTTP method dictates *how* to interact with it (the verb). I corrected my endpoints to use collection-based URLs (e.g., `POST /api/orders/` to create, `GET /api/products/` to fetch all) and appended IDs to fetch specific records (e.g., `GET /api/posts/7/`).
