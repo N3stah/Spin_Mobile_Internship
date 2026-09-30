@@ -57,11 +57,18 @@ Wrote the `month_ends_on_friday` helper function to isolate the logic for findin
 **What confused me:**
 I wasn't entirely sure why we needed to construct a specific "date object" instead of just using numbers.
 **How I figured it out:** 
-I learned that datetime.date creates an intelligent calendar object that inherently knows its own properties, and Python's .weekday() method counts days starting at 0 for Monday, making Friday exactly 4.
+I learned that`datetime.date`creates an intelligent calendar object that inherently knows its own properties, and Python's`.weekday()`method counts days starting at 0 for Monday, making Friday exactly 4.
 
 **What I did**
 Wrote the`count_for_year`function to iterate through all 12 months of a given year and accumulate a count of how many end on a Friday.
 **What confused me** 
 Getting to remember upper bound of a sequence works in Python loops. 
 **How I figured it out:**
-Learned that the range(start, stop) function is exclusive at the upper bound, meaning range(1, 13) is required to successfully loop from 1 to 12.
+Learned that the range(start, stop) function is exclusive at the upper bound, meaning  `range(1, 13)`  is required to successfully loop from 1 to 12.
+
+**What I did:**
+Wrote the final `count_last_friday_months` function that handles both single years and year ranges using default parameters.
+**What confused me**
+I needed to figure out how a function could accept either one or two arguments without throwing a missing parameter error.
+**How i figured it out**
+I learned to use `year2=None` as a default parameter, and then wrote a quick if statement to set `year2 = year1` if no second argument is provided.
