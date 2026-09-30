@@ -58,3 +58,10 @@ Wrote the `month_ends_on_friday` helper function to isolate the logic for findin
 I wasn't entirely sure why we needed to construct a specific "date object" instead of just using numbers.
 **How I figured it out:** 
 I learned that datetime.date creates an intelligent calendar object that inherently knows its own properties, and Python's .weekday() method counts days starting at 0 for Monday, making Friday exactly 4.
+
+**What I did**
+Wrote the`count_for_year`function to iterate through all 12 months of a given year and accumulate a count of how many end on a Friday.
+**What confused me** 
+Getting to remember upper bound of a sequence works in Python loops. 
+**How I figured it out:**
+Learned that the range(start, stop) function is exclusive at the upper bound, meaning range(1, 13) is required to successfully loop from 1 to 12.
