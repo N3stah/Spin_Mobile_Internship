@@ -48,3 +48,13 @@ Studied Django's architecture, specifically the difference between a Project (th
 How Django knows where to send an incoming HTTP request and how it extracts data from the URL itself.
 **How I figured it out:** 
 I learned the exact request chain: Django checks the project-level `urls.py` first, uses `include()` to hand off the request to the app-level `urls.py`, and then uses path converters like `<int:product_id>` to capture URL parameters and pass them as variables directly into the view function.
+
+# DSA Challenge — Fridays at Month End
+
+## Date: September 30, 2026
+**What I did:**
+Wrote the `month_ends_on_friday` helper function to isolate the logic for finding a specific month's last day and checking its weekday.
+**What confused me:**
+I wasn't entirely sure why we needed to construct a specific "date object" instead of just using numbers.
+**How I figured it out:** 
+I learned that datetime.date creates an intelligent calendar object that inherently knows its own properties, and Python's .weekday() method counts days starting at 0 for Monday, making Friday exactly 4.
