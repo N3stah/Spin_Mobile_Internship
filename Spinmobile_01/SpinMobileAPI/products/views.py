@@ -53,3 +53,19 @@ def product_list(request):
         return JsonResponse(new_product, status=201)
 
     return JsonResponse({"error": "Method not allowed"}, status=405)
+
+@csrf_exempt
+def product_detail(request, product_id):
+    """ GET /api/products/<id>/ — retrieve one product
+    PUT    /api/products/<id>/ — update one product
+    DELETE /api/products/<id>/ — delete one product """
+    # Find the product — returns None if not found
+    product = next((p for p in _products if p["id"] == product_id), None)
+
+    if product is None:
+        return JsonResponse({"error": f"Product {product_id} not found"}, status=404)
+
+    if request.method == "GET":
+        return JsonResponse(product, status=200)
+
+    return JsonResponse({"error": "Method not allowed"}, status=405)

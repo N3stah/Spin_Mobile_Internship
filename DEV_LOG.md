@@ -96,3 +96,7 @@ Built a POST endpoint to create new products. I used `json.loads()` to parse the
 ![img_2.png](img_2.png)
 ![img_3.png](img_3.png)
 ----
+**What I did:** 
+Built a `product_detail` view and URL pattern supporting `GET /api/products/<id>/`. I used Python's `next()` generator expression combined with a default `None` argument to find specific products by ID safely, returning a `404 Not Found` error if the product doesn't exist.
+![img_4.png](img_4.png)
+![img_5.png](img_5.png)
