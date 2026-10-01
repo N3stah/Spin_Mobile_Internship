@@ -82,3 +82,11 @@ Initialized my first Django project (`SpinMobileAPI`) and app (`products`) insid
 Why Django creates two folders with the exact same name (`SpinMobileAPI/SpinMobileAPI`).
 **What I learned:** 
 I learned that the outer folder is just a root container for the repository, while the inner folder is the actual Python package containing the project's configuration files (like `settings.py` and `urls.py`).
+---
+**What I did:** 
+Created an in-memory data store and built my first Django view (`product_list`) to return a JSON response. I also configured URL routing at both the project and app levels, and successfully tested the `GET` endpoint in Postman.
+![img_1.png](img_1.png)
+**What confused me:** 
+Why routing requires two different `urls.py` files (one in the project folder and one in the app folder) and how they connect.
+**What I learned:** 
+I learned that the project-level `urls.py` acts as a master traffic cop. It catches the base `api/products/` path and uses `include()` to hand the request off to the app-level `urls.py`, which then maps the empty path `''` directly to the `product_list` view.
