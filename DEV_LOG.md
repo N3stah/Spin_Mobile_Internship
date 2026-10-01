@@ -72,3 +72,13 @@ Wrote the final `count_last_friday_months` function that handles both single yea
 I needed to figure out how a function could accept either one or two arguments without throwing a missing parameter error.
 **How i figured it out**
 I learned to use `year2=None` as a default parameter, and then wrote a quick if statement to set `year2 = year1` if no second argument is provided.
+
+## FIRST DJANGO PROJECT
+
+**What I did:** 
+Initialized my first Django project (`SpinMobileAPI`) and app (`products`) inside an isolated Python virtual environment (`venv`) to protect my global packages. I also verified the installation by starting the development server.
+![Django Install Success](![img.png](img.png))
+**What confused me:** 
+Why Django creates two folders with the exact same name (`SpinMobileAPI/SpinMobileAPI`).
+**What I learned:** 
+I learned that the outer folder is just a root container for the repository, while the inner folder is the actual Python package containing the project's configuration files (like `settings.py` and `urls.py`).
