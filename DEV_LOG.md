@@ -90,3 +90,9 @@ Created an in-memory data store and built my first Django view (`product_list`) 
 Why routing requires two different `urls.py` files (one in the project folder and one in the app folder) and how they connect.
 **What I learned:** 
 I learned that the project-level `urls.py` acts as a master traffic cop. It catches the base `api/products/` path and uses `include()` to hand the request off to the app-level `urls.py`, which then maps the empty path `''` directly to the `product_list` view.
+----
+**What I did:** 
+Built a POST endpoint to create new products. I used `json.loads()` to parse the raw HTTP request body and added validation logic to catch missing fields or invalid (negative) prices, returning a `400 Bad Request` if validation fails and a `201 Created` when successful.
+![img_2.png](img_2.png)
+![img_3.png](img_3.png)
+----
