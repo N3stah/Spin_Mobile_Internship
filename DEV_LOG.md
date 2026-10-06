@@ -100,3 +100,13 @@ Built a POST endpoint to create new products. I used `json.loads()` to parse the
 Built a `product_detail` view and URL pattern supporting `GET /api/products/<id>/`. I used Python's `next()` generator expression combined with a default `None` argument to find specific products by ID safely, returning a `404 Not Found` error if the product doesn't exist.
 ![img_4.png](img_4.png)
 ![img_5.png](img_5.png)
+
+## Date: October 6, 2026
+**What I did:** 
+Extended the `product_detail` view to handle `PUT` requests for updating an existing product. Implemented partial updates so clients can modify individual fields (like price) without overwriting other attributes.
+![img_6.png](img_6.png)
+![img_8.png](img_8.png)
+**What confused me:** 
+I got indentation and syntax errors when placing the `elif request.method == "PUT":` block outside of the `product_detail` function, and Postman showed "Could not send request" when the dev server wasn't running.
+**How I figured it out:** 
+I properly indented the `elif` block inside `product_detail` before the final 405 fallback, restarted `python manage.py runserver`, and sent a raw JSON body in Postman to receive a successful `200 OK` response.
