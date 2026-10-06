@@ -68,4 +68,26 @@ def product_detail(request, product_id):
     if request.method == "GET":
         return JsonResponse(product, status=200)
 
+    elif request.method == "PUT":
+        try:
+            data = json.loads(request.body)
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "Invalid JSON body"}, status=400)
+
+        # Update only the fields that were provided — leave others unchanged
+        if "name" in data:
+            product["name"] = str(data["name"]).strip()
+        if "price" in data:
+            try:
+                price = float(data["price"])
+                if price <= 0:
+                    raise ValueError()
+                product["price"] = price
+            except (ValueError, TypeError):
+                return JsonResponse({"error": "Price must be a positive number"}, status=400)
+        if "stock" in data:
+            product["stock"] = int(data["stock"])
+
+        return JsonResponse(product, status=200)
+
     return JsonResponse({"error": "Method not allowed"}, status=405)
