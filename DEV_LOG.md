@@ -110,3 +110,10 @@ Extended the `product_detail` view to handle `PUT` requests for updating an exis
 I got indentation and syntax errors when placing the `elif request.method == "PUT":` block outside of the `product_detail` function, and Postman showed "Could not send request" when the dev server wasn't running.
 **How I figured it out:** 
 I properly indented the `elif` block inside `product_detail` before the final 405 fallback, restarted `python manage.py runserver`, and sent a raw JSON body in Postman to receive a successful `200 OK` response.
+
+**What I did:** Implemented the `DELETE` method in the `product_detail` view (`DELETE /api/products/<id>/`) to remove a product from the in-memory `_products` list by ID, returning a `200 OK` status code with a JSON confirmation message. Verified in Postman that deleting an existing product succeeds and subsequent requests to the same resource yield a `404 Not Found`[cite: 8].
+![img_9.png](img_9.png)
+![img_10.png](img_10.png)
+![img_11.png](img_11.png)
+**What confused me:** Why some REST standards recommend returning a `204 No Content` status code with an empty body for deletions instead of a `200 OK` with a JSON message.
+**How I figured it out:** I learned the trade-off between strict REST compliance and developer experience: `204 No Content` is the strict REST standard and saves network bandwidth by sending zero body bytes, whereas `200 OK` with a JSON message provides explicit, human-readable confirmation during development and testing in Postman.

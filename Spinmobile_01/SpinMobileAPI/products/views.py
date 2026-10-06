@@ -90,4 +90,11 @@ def product_detail(request, product_id):
 
         return JsonResponse(product, status=200)
 
+    elif request.method == "DELETE":
+        _products.remove(product)
+        return JsonResponse(
+            {"message": f"Product {product_id} deleted successfully"},
+            status=200
+        )
+
     return JsonResponse({"error": "Method not allowed"}, status=405)
