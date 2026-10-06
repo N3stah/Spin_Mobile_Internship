@@ -1,0 +1,59 @@
+{
+	"info": {
+		"_postman_id": "eb10cafc-6428-4086-a364-d9188371d675",
+		"name": "Spin Mobile Week 6",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "58657763",
+		"_collection_link": "https://n3stah-1752250.postman.co/workspace/Mark-Manoti-Ndege's-Workspace~c3bc9a44-a7df-4286-8df0-bc2a5d3c68b5/collection/58657763-eb10cafc-6428-4086-a364-d9188371d675?action=share&source=collection_link&creator=58657763"
+	},
+	"item": [
+		{
+			"name": "GET all products",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "GET all products Copy",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
